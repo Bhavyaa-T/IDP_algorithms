@@ -47,22 +47,11 @@ class PID:
         return update
     
 
-# FIND OUT WHETHER SENSORS GIVE ANALOG OR DIGITAL OUTPUT 
 
 WEIGHTS = [-2.0, -1.0, 1.0, 2.0] #  These will be used for finding our centroid (negative for left, positive for right)
 
-# If Analog
-# set ADC pins 
-left_adc = ADC(26) # corresponds to left line sensor
-right_adc = ADC(27) # corresponds to right line sensor 
-
-# Decide threshold values for white and black 
-l_white, l_black = 20000, 40000 
-r_white, r_black = 20000, 40000
-
-# If Digital 
 # ASSUMING BLACK IS HIGH 
-digital_pins = [10, 11, 12, 13]  
+digital_pins = [10, 11, 12, 13]  #GPIO pin numbers
 digital = [Pin(i, Pin.IN) for i in digital_pins]
 
 def read_sensors(digital):
