@@ -1,4 +1,4 @@
-from machine import Pin, PWM, ADC
+from machine import Pin, PWM
 import utime
 
 class Motor:
