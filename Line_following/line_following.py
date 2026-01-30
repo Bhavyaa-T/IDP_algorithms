@@ -67,8 +67,8 @@ def centroid_position(vals, weights):
     val_sum = 0.0
 
     for vi, wi in zip(vals, weights):
-        val_weight_sum += (1-vi) * wi
-        val_sum += (1-vi)
+        val_weight_sum += vi * wi
+        val_sum += vi
     
     if val_sum == 0:
         return None, 0
@@ -81,7 +81,7 @@ def main():
     left_motor = Motor(dirPin = 4, PWMPin = 5)    
     right_motor = Motor(dirPin = 7, PWMPin = 6)
 
-    pid = PID(Kp=20, Ki=0, Kd=10, output_limits=(-50,50))
+    pid = PID(Kp=30, Ki=0, Kd=20, output_limits=(-50,50))
 
     base_speed = 30   # This is a % of the max speed
 
@@ -109,12 +109,8 @@ def main():
         cmd_right = max(0, min(100, cmd_right))
 
         left_motor.Forward(cmd_left)
-        right_motor.Reverse(cmd_right)
+        right_motor.Forward(cmd_right)
 
         utime.sleep(0.01)
 
 main()
-
-
-
-
